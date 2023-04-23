@@ -1,0 +1,8 @@
+{
+    "index": {
+        "fields": [ "company"]
+    },
+    "ddoc": "companyIndexDoc",
+    "name": "companyIndex",
+    "type": "json"
+}

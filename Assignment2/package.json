@@ -1,6 +1,6 @@
-{   "name": "patientrecordcontract",
+{   "name": "irecordcontract",
     "version": "0.0.2",
-    "description": "Patient record contract",
+    "description": "Papernet Contract",
     "main": "index.js",
     "engines": {
         "node": ">=8",

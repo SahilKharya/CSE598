@@ -46,21 +46,20 @@ class StateList {
         return state;
     }
 
-    async getStateByRange(start,end)
-    {
+    async getStateByRange(start, end) {
         let iterator = await this.ctx.stub.getStateByRange(start, end);
-        let  allResults=[];
+        let allResults = [];
         //let res = await iterator.next();
 
-        while(true) {
+        while (true) {
             let res = await iterator.next();
 
             if (res.value && res.value.value.toString()) {
                 let jsonRes = {};
-                console.log( res.value.value.toString('utf8'));
+                console.log(res.value.value.toString('utf8'));
 
                 jsonRes.Key = res.value.key;
-                try{
+                try {
                     jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
                 } catch (err) {
                     console.log(err);
@@ -68,17 +67,17 @@ class StateList {
                 }
                 allResults.push(jsonRes);
             }
-            
-            if (res.done){
+
+            if (res.done) {
                 console.log('end of data');
                 await iterator.close();
                 console.info(allResults);
                 return allResults;
-            
+
             }
 
         }
-        
+
 
         // while(res==null || !res.done) {
 
@@ -99,7 +98,7 @@ class StateList {
     }
 
     async getStateByPartialCompositeKey(key) {
-        const iterator = await this.ctx.stub.getStateByPartialCompositeKey(key,[]);
+        const iterator = await this.ctx.stub.getStateByPartialCompositeKey(key, []);
         return iterator;
     }
 
@@ -120,7 +119,7 @@ class StateList {
         this.supportedClasses[stateClass.getClass()] = stateClass;
     }
 
-    async getAllKeys(){
+    async getallkeys() {
         const iterator = await this.ctx.stub.getStateByRange('', '');
         const allkeys = [];
         while (true) {
@@ -130,18 +129,26 @@ class StateList {
                 console.log(res.value.value.toString('utf8'));
 
                 const Key = res.value.key;
+                // let Record;
+                // try {
+                //     Record = JSON.parse(res.value.value.toString('utf8'));
+                // } catch (err) {
+                //     console.log(err);
+                //     Record = res.value.value.toString('utf8');
+                // }
                 allkeys.push(Key);
             }
             if (res.done) {
                 console.log('end of data');
                 await iterator.close();
+                // console.info(allResults);
                 return allkeys;
             }
         }
     }
 
 
-    async getAllStates() {
+    async getallstates() {
         const iterator = await this.ctx.stub.getStateByRange('', '');
 
         const allResults = [];
@@ -169,14 +176,6 @@ class StateList {
             }
         }
     }
-
-
-
-
-
-
-
-
 }
 
 module.exports = StateList;

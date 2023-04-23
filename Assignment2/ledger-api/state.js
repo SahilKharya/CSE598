@@ -29,11 +29,11 @@ class State {
         return this.key;
     }
 
-    getSplitKey(){
+    getSplitKey() {
         return State.splitKey(this.key);
     }
 
-    getCurrentState(){
+    getCurrentState() {
         return this.currentState;
     }
 
@@ -90,7 +90,7 @@ class State {
         return keyParts.map(part => JSON.stringify(part)).join(':');
     }
 
-    static splitKey(key){
+    static splitKey(key) {
         return key.split(':');
     }
 

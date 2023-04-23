@@ -1,8 +1,0 @@
-{
-    "index": {
-        "fields": [ "gender"]
-    },
-    "ddoc": "genderIndexDoc",
-    "name": "genderIndex",
-    "type": "json"
-}
